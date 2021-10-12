@@ -6,76 +6,109 @@ let rock = document.getElementById("btn_rock");
         const options = ['rock', 'paper', 'scissor'];
         const comp_win = 'Sorry, you lose';
         const user_win = 'You won';
-        let index;
+        let moves = 4;
         let result_area = document.getElementById('result');
         let scores = document.getElementById('score');
         let comp_score = 0;
         let user_score = 0;
         let temp_string;
+        let comp_input_display = document.getElementById("computer");
+        let start = document.getElementById("startGame");
 
-        scores.innerHTML = "Computer " + comp_score + ": You " + user_score;
-        
-            temp_string = 'Round ' + index;
+        const getComputerInput = () => {
+            return Math.floor(Math.random() * options.length);
+        }
+
+        const winner = () => {
+            if (moves == 0) {
+                if (comp_score > user_score) {
+                    result_area.innerHTML = comp_win;
+                    } else {
+                        result_area.innerHTML = user_win;
+                    }
+            }
+        }
+
+        const endGame = () => {
+            if (moves == 0 || moves == 4) {
+                moves = 4;
+                comp_score = 0;
+                user_score = 0;
+
+                start.style="display: block";
+                rock.style="display: none";
+                paper.style="display: none";
+                scissor.style="display: none";
+                scores.style="display: none";
+                //result_area.style="display: none";
+                comp_input_display.style="display: none";
+            } else {
+                start.style="display: none";
+            }
+        }
+
+        const game = () => {
+            moves--;
+            temp_string = 'Moves left ' + moves;
+            result_area.innerHTML = temp_string;
+            comp_input = options[getComputerInput()];
+            temp_string = "Computer chose " + comp_input + " You chose " + user_input;
+            comp_input_display.innerHTML = temp_string;
+            console.log(comp_input);
+            console.log("user: "+ user_input);
+
+            if ((user_input == "rock" && comp_input == "paper") || (user_input == "scissor" && comp_input == "rock") || (user_input == "paper" && comp_input == "scissor")) {
+                comp_score += 1;
+            } else {
+                if ((user_input == "rock" && comp_input == "scissor") || (user_input == "scissor" && comp_input == "paper") || (user_input == "paper" && comp_input == "rock")) {
+                    user_score += 1;
+                }
+            }
+            temp_string = 'Computer ' + comp_score + " : " + 'You ' + user_score;
+            scores.innerHTML = temp_string;
+            endGame();
+            
+        }
+
+
+        start.addEventListener('click', () => {
+            
+            start.style="display: none";
+            rock.style="display: inline-block";
+            paper.style="display: inline-block";
+            scissor.style="display: inline-block";
+            scores.style="display: block";
+            result_area.style="display: block";
+            comp_input_display.style="display: block";
+
+            
+
+            scores.innerHTML = "Computer " + comp_score + ": You " + user_score;
+
+            moves--;
+            temp_string = 'Moves left ' + moves;
             result_area.innerHTML = temp_string;
 
             rock.addEventListener('click', () => {
                 user_input = "rock";
-                comp_input = options[getComputerInput()];
-                console.log(comp_input);
-                console.log("user: "+ user_input);
-
-                if ((user_input == "rock" && comp_input == "paper") || (user_input == "scissor" && comp_input == "rock") || (user_input == "paper" && comp_input == "scissor")) {
-                    comp_score += 1;
-                } else {
-                    if ((user_input == "rock" && comp_input == "scissor") || (user_input == "scissor" && comp_input == "paper") || (user_input == "paper" && comp_input == "rock")) {
-                        user_score += 1;
-                    }
-                }
-                temp_string = 'Computer ' + comp_score + " : " + 'You ' + user_score;
-                scores.innerHTML = temp_string;
+                game();
             });
             paper.addEventListener('click', () => {
                 user_input = "paper";
-                comp_input = options[getComputerInput()];
-                console.log(comp_input);
-                console.log("user: "+ user_input);
-
-                if ((user_input == "rock" && comp_input == "paper") || (user_input == "scissor" && comp_input == "rock") || (user_input == "paper" && comp_input == "scissor")) {
-                    comp_score += 1;
-                } else {
-                    if ((user_input == "rock" && comp_input == "scissor") || (user_input == "scissor" && comp_input == "paper") || (user_input == "paper" && comp_input == "rock")) {
-                        user_score += 1;
-                    }
-                }
-                temp_string = 'Computer ' + comp_score + " : " + 'You ' + user_score;
-                scores.innerHTML = temp_string;
+                game();
             });
             scissor.addEventListener('click', () => {
                 user_input = "scissor";
-                comp_input = options[getComputerInput()];
-                console.log(comp_input);
-                console.log("user: "+ user_input);
-
-                if ((user_input == "rock" && comp_input == "paper") || (user_input == "scissor" && comp_input == "rock") || (user_input == "paper" && comp_input == "scissor")) {
-                    comp_score += 1;
-                } else {
-                    if ((user_input == "rock" && comp_input == "scissor") || (user_input == "scissor" && comp_input == "paper") || (user_input == "paper" && comp_input == "rock")) {
-                        user_score += 1;
-                    }
-                }
-                temp_string = 'Computer ' + comp_score + " : " + 'You ' + user_score;
-                scores.innerHTML = temp_string;
+                game();
             });
 
-            function getComputerInput() {
-                return Math.floor(Math.random() * options.length);
-            }
 
-            /*if (comp_score > user_score) {
-            result_area.innerHTML = comp_win;
-            } else {
-                result_area.innerHTML = user_win;
-            }*/
+            /*if (flag == 4) {
+                
+            }*/ 
+            
+        });
+
 
         //user choose an option
         //computer choose an option
