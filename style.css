@@ -25,6 +25,10 @@ body {
     font-size: 1.6rem;
 }
 
+.heading {
+    text-align: center;
+}
+
 .options {
     padding: 0.5rem 0rem;
     display: flex;

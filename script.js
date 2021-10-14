@@ -23,17 +23,28 @@ const startGame = () => {
         temp_string = 'Moves left ' + moves;
         result_area.innerHTML = temp_string;
         comp_input = options[getComputerInput()];
-        temp_string = "Computer chose " + comp_input + " & You chose " + user_input;
-        comp_input_display.innerHTML = temp_string;
+        //temp_string = "Computer chose " + comp_input + " & You chose " + user_input;
+        //comp_input_display.innerHTML = temp_string;
         console.log(comp_input);
         console.log("user: "+ user_input);
         
         if ((user_input == "rock" && comp_input == "paper") || (user_input == "scissor" && comp_input == "rock") || (user_input == "paper" && comp_input == "scissor")) {
             comp_score += 1;
+            temp_string = "Computer chose " + comp_input + " & You chose " + user_input;
+            comp_input_display.innerHTML = temp_string;
         } else {
             if ((user_input == "rock" && comp_input == "scissor") || (user_input == "scissor" && comp_input == "paper") || (user_input == "paper" && comp_input == "rock")) {
                 user_score += 1;
+                temp_string = "Computer chose " + comp_input + " & You chose " + user_input;
             }
+            else {
+                ++moves;
+                temp_string = 'Moves left ' + moves;
+                result_area.innerHTML = temp_string;
+
+                temp_string = "TIE";
+            }
+            comp_input_display.innerHTML = temp_string;
         }
         temp_string = 'Computer ' + comp_score + " : " + 'You ' + user_score;
         scores.innerHTML = temp_string;
