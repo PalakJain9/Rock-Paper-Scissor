@@ -140,7 +140,8 @@ const startGame = () => {
             scores.style="display: none";
             //result_area.style="display: none";
             comp_input_display.style="display: none";
-    
+            
+            start.innerText = "Play Again";
             start.addEventListener('click', () => {
                 window.location.reload();
             });
