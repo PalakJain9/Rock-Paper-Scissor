@@ -8,21 +8,21 @@
 body {
     background-color: rgb(214, 196, 243);
     display: grid;
-    align-items: center;
-    justify-content: center;
+    place-items: center;
 }
 
 .container {
     background-color: rgb(214, 196, 243);
     color: #14123d;
     height: 70vh;
-    width: 70vh;
+    width: 70vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1.5rem;
     font-size: 1.6rem;
+    text-align: center;
 }
 
 .heading {
@@ -47,4 +47,20 @@ button {
 
 #computer {
     font-size: 1.2rem;
+}
+
+@media only screen 
+and (min-device-width : 481px) 
+and (max-device-width : 813px) {
+    html {
+        font-size: 90%;
+    }
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+    html {
+        font-size: 80%;
+    }
 }

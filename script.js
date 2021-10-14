@@ -25,8 +25,6 @@ const startGame = () => {
         comp_input = options[getComputerInput()];
         //temp_string = "Computer chose " + comp_input + " & You chose " + user_input;
         //comp_input_display.innerHTML = temp_string;
-        console.log(comp_input);
-        console.log("user: "+ user_input);
         
         if ((user_input == "rock" && comp_input == "paper") || (user_input == "scissor" && comp_input == "rock") || (user_input == "paper" && comp_input == "scissor")) {
             comp_score += 1;
