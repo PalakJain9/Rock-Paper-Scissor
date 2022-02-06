@@ -77,41 +77,17 @@ const startGame = () => {
         });
     }
 
-
-    const atStart = () => {
-
-        moves = -1;
-
-        if (moves == -1) {
-            start.style.display = "block";
-            rock.style.display = "none";
-            paper.style.display = "none";
-            scissor.style.display = "none";
-            scores.style.display = "none";
-            result_area.style.display = "none";
-            comp_input_display.style.display = "none";
-
-            moves = 3;
-            start.addEventListener('click', playGame());
-        }
-
-        //moves = 3;
-        //comp_score = 0;
-        //user_score = 0;
-
-    }
-
     const getComputerInput = () => {
         return Math.floor(Math.random() * options.length);
     }
     
-    const display = () => {
+    /*const display = () => {
         if (moves == 0 || moves == 3) {
             
         } else {
             start.style.display = "none";
         }
-    }
+    }*/
     
     const winner = () => {
         let main_body = document.querySelector('body');
@@ -149,6 +125,28 @@ const startGame = () => {
         } else {
             start.style="display: none";
         }
+    }
+
+    const atStart = () => {
+
+        moves = -1;
+        rock.style = "display: none";
+        paper.style = "display: none";
+        scissor.style = "display: none";
+        scores.style = "display: none";
+        result_area.style = "display: none";
+        comp_input_display.style = "display: none";
+        start.style = "display: block"; 
+        start.innerText = "Start Game";
+
+        if (moves == -1) {
+            moves = 3;
+            start.addEventListener('click', playGame);
+            //start.addEventListener('click', playGame()); 
+            //DON'T DO THIS MISTAKE EVER
+            //it's start.addEventListener('click', function_name) and not function_name()
+        }
+
     }
 
     atStart();
